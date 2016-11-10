@@ -1,0 +1,4 @@
+
+python MhroczusTheBot.py
+
+PAUSE
