@@ -19,22 +19,27 @@ async def check(author, message):
         plik.close()    
 
     try:
-        plik = open('check.mhro', "rU")
         try:
+            plik = open('check.mhro', "rU")
             ilosc = len(plik.readlines())
-            print(ilosc)
+            print("Ilosc wersow wczytanych: ", ilosc)
             
-            for i in range (2,ilosc,2):
+            for i in range (2,ilosc+1,2):
                 haslo = linecache.getline('check.mhro', i)
                 autor = linecache.getline('check.mhro', i-1)
 
-                print(i)
-                print(haslo)
+                print("Obrot: ", i)
+                print("Haslo wczytane: ", haslo)
+                print("Autor: ", autor)
+                print("User wprowadzil: " , message.content)                
 
-                if message.content == haslo:
-                    await client.send_message(message.channel, "Dane skojarzenie dodano przez %s" %autor)
+                if (message.content + '\n') == haslo:
+                    print("Haslo i haslo sie zgadzaja\n")
+                    await client.send_message(message.channel, "Dane skojarzenie zostalo użyte przez %s" %autor)
                     istnieje = 1
+                    break;
 
+            print("Wartosc istnieje wynosi: ", istnieje)
             if istnieje == 0:
                 plik.close()
                 plik = open('check.mhro', "a")
@@ -45,9 +50,9 @@ async def check(author, message):
                 plik.write('\n')
 
                 print("%s - dodano przez %s" % (message.content, author.name))
-
+            
         finally:
             plik.close()
-            
+
     except IOError:
         print("Mamy bledy")

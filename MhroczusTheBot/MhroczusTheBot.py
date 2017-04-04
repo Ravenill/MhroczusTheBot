@@ -14,8 +14,9 @@ wnerwiaj = -1
 @client.event
 async def on_message(message):
     author = message.author
+    mhroczus = client.user
 
-    if message.author == client.user:
+    if author == mhroczus:
         return
 
     else:                      
@@ -29,7 +30,7 @@ async def on_message(message):
             await mowa.naukamowienia(author, message)
 
         if message.content.find('Możesz mówić, Mhroczusiu') > -1: 
-            await wkurw.denerwuj(message)
+            await wkurw.denerwuj(client, message, mhroczus)
 
         if message.content.startswith('...'):
             await mowa.kropek(author, message)
