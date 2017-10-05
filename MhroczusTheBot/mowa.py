@@ -24,4 +24,4 @@ async def kropek(author, message):
     await client.login('MjQxOTM2MDM5NjcxODg5OTIy.CvZJLQ._Pqas317uMsN0sWNrClKgYjuLIc')
 
     await client.send_message(message.channel, "...")
-    return;
+    return
